@@ -1,0 +1,60 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "ES2022",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@/blockchain/*": [
+        "src/blockchain/*"
+      ],
+      "@/telemetry/*": [
+        "src/telemetry/*"
+      ],
+      "@/common/*": [
+        "src/common/*"
+      ],
+      "@/config/*": [
+        "src/config/*"
+      ],
+      "@/database/*": [
+        "src/database/*"
+      ],
+      "@/api/*": [
+        "src/api/*"
+      ]
+    },
+    "types": [
+      "node",
+      "jest"
+    ]
+  },
+  "include": [
+    "src/**/*",
+    "test/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
+}

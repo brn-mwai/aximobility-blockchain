@@ -1,0 +1,163 @@
+# ================================
+# Node / JS / TS Artifacts
+# ================================
+
+node_modules/
+dist/
+build/
+.cache/
+*.tsbuildinfo
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# Coverage
+coverage/
+.nyc_output/
+lcov.info
+*.lcov
+
+# Test outputs
+test.db
+test.sqlite
+
+# Compiled output artifacts (Hardhat)
+artifacts/
+cache/
+typechain/
+typechain-types/
+
+# Contracts-specific
+/contracts/artifacts
+/contracts/cache
+/contracts/ink/**/target/
+contracts/ink/*.contract
+contracts/ink/*.wasm
+
+# ================================
+# 🦀 Rust / ink!
+# ================================
+
+**/target/
+**/*.rs.bk
+*.pdb
+Cargo.lock
+
+# ink! local files
+.ink/
+.rust_analyzer
+rust-project.json
+substrate-contracts-node
+contracts-node
+
+# ================================
+# ⚙️ Build & Deployment
+# ================================
+
+.github/
+.husky.
+
+# Docker
+.dockerignore
+Dockerfile
+docker-compose.override.yml
+
+# Deployment records
+/deployments/
+deployments/*.json
+deployments/artifacts/
+build-summary.json
+gas-report.txt
+contract-addresses.json
+
+# Local blockchain test data
+/blockchain-data/
+/data/
+
+# Performance & benchmark logs
+perf.data
+perf.data.old
+/benchmarks/results/
+
+# ================================
+# 🔐 Env & Secrets
+# ================================
+
+.env
+.env.*
+!.env.example
+.env.test
+.env.deployment
+
+# Wallets
+/wallets/
+wallets/*.json
+
+# ================================
+# 🧪 Testing & Debugging
+# ================================
+
+/logs
+*.log
+*.seed
+*.pid
+*.pid.lock
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Jest configs
+jest-e2e.json
+jest.config.js
+
+# ================================
+# 💻 Editor / OS / IDE
+# ================================
+
+# VSCode
+.vscode/
+.vscode-test
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/extensions.json
+
+# IntelliJ / WebStorm / JetBrains
+.idea/
+*.iml
+
+# Others
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ================================
+# 🗂️ Documentation & Reports
+# ================================
+
+# Generated or internal-only docs
+/docs/deliverables/*.md
+
+# Internal reports
+presentation/*.json
+reports/*.json

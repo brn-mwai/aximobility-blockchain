@@ -1,0 +1,37 @@
+[package]
+name = "vehicle_registry"
+version = "1.0.0"
+authors = ["AXI Development Team"]
+edition = "2021"
+publish = false
+description = "Vehicle and sensor registry for AXI mobility ecosystem"
+license = "MIT"
+
+[dependencies]
+ink = { workspace = true }
+scale = { workspace = true }
+scale-info = { workspace = true, optional = true }
+
+[dev-dependencies]
+ink_e2e = "5.0.0"
+
+[lib]
+path = "lib.rs"
+
+[features]
+default = ["std"]
+std = [
+    "ink/std",
+    "scale/std",
+    "scale-info/std",
+]
+ink-as-dependency = []
+e2e-tests = []
+
+[profile.release]
+overflow-checks = false
+lto = true
+codegen-units = 1
+
+[profile.dev]
+overflow-checks = true

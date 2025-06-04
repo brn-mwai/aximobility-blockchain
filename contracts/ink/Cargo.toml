@@ -1,0 +1,17 @@
+[workspace]
+members = [
+    "did_registry",
+    "telemetry_processor", 
+    "vehicle_registry"
+]
+resolver = "2"
+
+[workspace.dependencies]
+ink = { version = "5.0.0", default-features = false }
+scale = { package = "parity-scale-codec", version = "3", default-features = false, features = ["derive"] }
+scale-info = { version = "2.6", default-features = false, features = ["derive"] }
+
+[workspace.metadata.contracts]
+ink_version = "5.0.0"
+toolchain = "stable"
+optimization = true
