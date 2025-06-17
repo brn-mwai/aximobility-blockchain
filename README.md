@@ -1,209 +1,432 @@
-# AXI Ecosystem - Blockchain Integration Platform
-
-**Transforming mobility infrastructure across Africa through blockchain technology**
+# AXI: Infrastructure for Tamper-Proof Carbon Intelligence
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Peaq Network](https://img.shields.io/badge/Built%20on-Peaq-blue)](https://peaq.network)
+[![Chainlink](https://img.shields.io/badge/Oracle-Chainlink-blue)](https://chain.link)
+[![Lisk](https://img.shields.io/badge/Sidechain-Lisk-purple)](https://lisk.com)
 
-[Website](https://aximobility.com) • [Documentation](#) • [API Reference](#)
+> **Transforming Carbon Accounting Through Hardware-Verified, Blockchain-Native Infrastructure**
 
-## What is AXI?
+## 🌍 Overview
 
-AXI is building the infrastructure for sustainable transportation in Africa. We're creating a platform that connects ride-hailing, delivery, and micro-mobility services while tracking their environmental impact through blockchain technology.
+As global industries race to decarbonize and meet climate mandates, one of the most complex challenges facing enterprises today is the accurate accounting and reporting of carbon emissions—especially Scope 3 emissions generated through external partners, fleets, and infrastructure. Transport and energy-related emissions are particularly difficult to quantify in real time, verify with confidence, and tokenize into trustworthy credits.
 
-Think Uber + environmental rewards + community ownership, all built on transparent blockchain infrastructure.
+**AXI (Autonomous eXchange Infrastructure)** is a revolutionary decentralized data and verification layer that addresses these problems head-on. Built at the intersection of hardware, blockchain, and carbon markets, AXI empowers enterprises, fleet operators, and infrastructure providers to capture and prove the climate impact of their operations with tamper-proof, hardware-signed carbon data.
 
-### The Problem We're Solving
+## 🎯 The Problem We Solve
 
-**Transportation in Africa faces three critical challenges:**
+### 1. 🔍 Data Integrity Crisis
+Carbon offset markets have historically relied on:
+- ❌ Unverifiable documentation
+- ❌ Formula-based estimates
+- ❌ Opaque accounting tools
+- ❌ Spreadsheet errors leading to millions in fraudulent credits
 
-1. **Limited Infrastructure**: Existing ride-hailing and delivery platforms aren't built for African market conditions
-2. **Environmental Impact**: Transportation contributes significantly to urban pollution, but there's no incentive structure for eco-friendly choices
-3. **Economic Inequality**: Platform profits flow to overseas shareholders instead of local communities
+### 2. 🔄 System Fragmentation
+Current emissions data is siloed across:
+- GPS logging systems
+- Charger networks
+- Third-party fleet management systems
+- Incompatible data models
 
-### Our Solution
+### 3. 🌐 Web3 Incompatibility
+Massive gap between:
+- **Data Source**: EV driving on highway
+- **Value Destination**: Registry, marketplace, or on-chain credit buyer
 
-**Blockchain-Powered Mobility Ecosystem:**
+## 💡 Our Solution: Hardware-Signed Carbon Hashes
 
-- **Decentralized Platform**: Community-owned infrastructure where users share in platform value
-- **Environmental Incentives**: Earn digital rewards for choosing eco-friendly transportation options
-- **Transparent Operations**: All transactions, environmental impact, and platform decisions recorded on-chain
-- **Multi-Service Integration**: Rides, deliveries, and micro-mobility in one unified platform
+AXI unifies all layers by anchoring tamper-proof hardware measurements directly to multi-chain blockchain infrastructure through compact, upgradeable devices:
 
-## How It Works
+### 🚗 DriveTag (Vehicle Integration)
+- Real-time odometer readings
+- Battery discharge monitoring (kWh)
+- GPS tracking with precision timestamping
+- CAN bus integration for vehicle telemetry
 
-### For Users
+### ⚡ ChargeSense (EV Charging Infrastructure)
+- Energy flow measurement
+- Charging session tracking
+- Grid interaction monitoring
+- Infrastructure uptime validation
 
-1. **Book a ride** through the AXI Super App
-2. **Choose eco-friendly options** (electric vehicles, shared rides, etc.)
-3. **Earn rewards** automatically based on environmental impact
-4. **Track your impact** through a virtual forest that grows with your contributions
-5. **Participate in governance** using earned tokens to influence platform decisions
+## 🏗️ Technology Architecture
 
-### For Drivers & Partners
+### Core Process Flow
 
-1. **Join the network** with verified identity and vehicle registration
-2. **Provide services** (rides, deliveries, vehicle sharing)
-3. **Earn AXI tokens** in addition to fares for eco-friendly operations
-4. **Co-own platform** through staking and governance participation
+```mermaid
+graph TB
+    %% Edge Layer
+    subgraph EdgeLayer["🔧 EDGE HARDWARE LAYER"]
+        DT["`**DriveTag**
+        📍 GPS Coordinates
+        🛣️ Odometer Readings  
+        🔋 Battery kWh
+        📊 CAN Bus Data`"]
+        
+        CS["`**ChargeSense**
+        ⚡ Energy Flow
+        🔌 Charging Sessions
+        📈 Grid Interaction
+        ⏱️ Uptime Tracking`"]
+        
+        SEC["`**ATECC608B Secure Element**
+        🔐 CBOR Encoding
+        #️⃣ SHA-256 Hashing
+        ✍️ ECDSA Signing
+        🔑 Non-exportable Keys`"]
+    end
 
-### For the Community
+    %% Blockchain Layer
+    subgraph BlockchainLayer["⛓️ BLOCKCHAIN INFRASTRUCTURE"]
+        PEAQ["`**Peaq Network**
+        (Substrate Chain)
+        
+        dataRegistry.storeHash()
+        • hash: 0x1a2b...
+        • did: did:peaq:0x...
+        • timestamp: unix_time
+        
+        ⚡ 2-second finality`"]
+        
+        LISK["`**Lisk Sidechain**
+        (JavaScript SDK)
+        
+        Merkle Aggregator:
+        • Batch 256 hashes
+        • Calculate Merkle root
+        • REST API endpoints
+        • GraphQL interface
+        
+        📡 /proof/{merkle_root}`"]
+    end
 
-1. **Transparent operations** with all impact data recorded on blockchain
-2. **Local ownership** through token distribution and governance
-3. **Environmental benefits** tracked and verified in real-time
-4. **Economic value** stays within local communities
+    %% Oracle Layer
+    subgraph OracleLayer["🌐 ORACLE & TOKEN LAYER"]
+        CHAIN["`**Chainlink OCR**
+        
+        • Merkle Root Verification
+        • Cross-chain Attestation
+        • AXI_Carbon_Proof Feed
+        • Decentralized Consensus`"]
+        
+        ETH["`**Ethereum/Polygon**
+        
+        • ERC-20 Token Standard
+        • CCIP Cross-chain Bridge
+        • DeFi Integration
+        • Public Markets`"]
+    end
 
-## Technology Architecture
+    %% Token Flow
+    subgraph TokenFlow["💰 TOKENIZATION PIPELINE"]
+        ARC20["`**ARC-20**
+        (Peaq Native)
+        
+        • Native Tokens
+        • On-chain Proofs
+        • Low Gas Fees`"]
+        
+        BRIDGE["`**CCIP Bridge**
+        
+        Cross-chain
+        Token Transfer`"]
+        
+        ERC20["`**ARC-20.e**
+        (Polygon Wrapped)
+        
+        • DeFi Compatible
+        • High Liquidity
+        • Public Trading`"]
+    end
 
-### Multi-Chain Blockchain Integration
+    %% Final Output
+    CREDITS["`🏆 **VERIFIABLE CARBON CREDITS**
+    
+    ✅ Hardware-Signed
+    ⛓️ Blockchain-Native
+    💱 Instantly Tradeable
+    🔒 Tamper-Proof`"]
 
-We built our platform to work across multiple blockchain networks, giving users flexibility and reducing costs:
+    %% Connections
+    DT --> SEC
+    CS --> SEC
+    SEC -->|WebSocket 2s| PEAQ
+    PEAQ -->|Relay Bridge| LISK
+    LISK -->|Oracle Feed| CHAIN
+    CHAIN --> ETH
+    
+    PEAQ --> ARC20
+    ARC20 --> BRIDGE
+    BRIDGE --> ERC20
+    ETH --> CREDITS
+    ERC20 --> CREDITS
 
-**Substrate Chains (Polkadot Ecosystem):**
+    %% Dark Mode Styling
+    classDef edgeStyleDark fill:#1a2332,stroke:#64b5f6,stroke-width:2px,color:#e3f2fd
+    classDef blockchainStyleDark fill:#2d1b3d,stroke:#ba68c8,stroke-width:2px,color:#f3e5f5
+    classDef oracleStyleDark fill:#1b2e1b,stroke:#81c784,stroke-width:2px,color:#e8f5e8
+    classDef tokenStyleDark fill:#332219,stroke:#ffb74d,stroke-width:2px,color:#fff3e0
+    classDef creditsStyleDark fill:#3d1a1a,stroke:#ef5350,stroke-width:3px,color:#ffebee
 
-- **Peaq Network**: Specialized for IoT and mobility use cases
-- **DID Management**: Decentralized identity for vehicles, drivers, and users
-- **Real-time Telemetry**: Processing sensor data from vehicles
-
-**EVM Chains (Ethereum Compatible):**
-
-- **Ethereum**: Main DeFi integrations and governance
-- **Polygon**: Low-cost transactions for everyday operations
-- **BSC & Avalanche**: Additional liquidity and user base access
-
-### Core Components
-
-#### Smart Contracts
-
+    class DT,CS,SEC edgeStyleDark
+    class PEAQ,LISK blockchainStyleDark
+    class CHAIN,ETH oracleStyleDark
+    class ARC20,BRIDGE,ERC20 tokenStyleDark
+    class CREDITS creditsStyleDark
 ```
-Blockchain Layer
-├── Identity Management (Substrate)
-│   ├── Vehicle Registration
-│   ├── Driver Verification  
-│   └── User Profiles
-├── Data Processing (Substrate)
-│   ├── Telemetry Collection
-│   ├── Environmental Impact Calculation
-│   └── Quality Validation
-└── Economic Layer (EVM)
-    ├── Fare Calculation
-    ├── Token Distribution
-    └── Governance Mechanisms
+
+### Technology Stack
+
+| Layer | Purpose | Technology | Implementation |
+|-------|---------|------------|----------------|
+| **Edge Devices** | Sensor-to-proof encoding | STM32L5 MCU, ATECC608B SE, Quectel BG95 | DriveTag & ChargeSense hardware |
+| **Registry Chain** | Immutable carbon hash ledger | Peaq Substrate | `storeHash(hash, did, timestamp)` |
+| **Merkle Aggregator** | Enterprise REST & proof server | Lisk SDK sidechain | TypeScript modules |
+| **Oracle & Bridge** | Public attestation & liquidity | Chainlink OCR, PoR, CCIP | Multi-chain verification |
+| **Token Layer** | Carbon credit tokenization | ARC-20 (Peaq) + ERC-20 (Polygon) | Cross-chain compatibility |
+
+### Cryptographic Security
+
+| Component | Security Feature | Implementation |
+|-----------|------------------|----------------|
+| **Hardware Security** | Non-exportable private keys | ATECC608B Secure Element |
+| **Data Integrity** | Tamper-proof hashing | SHA-256 on-device processing |
+| **Authentication** | Digital signatures | ECDSA P-256 curve |
+| **Verification** | Merkle proofs | 256-hash batching system |
+| **Oracle Security** | Decentralized consensus | Chainlink OCR nodes |
+
+## 🔄 How AXI Works: End-to-End Process
+
+### Step 1: Data Capture
+```
+🚗 Vehicle/Charger Operation
+├── GPS coordinates & timestamps
+├── CAN odometer readings
+├── Battery telemetry (kWh)
+└── Energy flow measurements
 ```
 
-#### Backend Services
-
+### Step 2: Hash & Sign
 ```
-API Layer (NestJS)
-├── Blockchain Integration
-├── Payment Processing
-├── Environmental Impact Tracking
-├── User Management
-└── Analytics & Reporting
+📊 Raw Data
+├── CBOR encoding
+├── SHA-256 hashing
+└── ECDSA signing (ATECC608B)
 ```
 
-#### Data Layer
-
+### Step 3: Post to Peaq
 ```
-Storage
-├── PostgreSQL (User data, transactions)
-├── Redis (Caching, sessions)
-└── IPFS (Decentralized file storage)
+⛓️ Blockchain Registry
+├── WebSocket submission
+├── dataRegistry pallet storage
+└── 2-second block inclusion
 ```
 
-## Key Features
+### Step 4: Relay to Lisk
+```
+🔗 Merkle Aggregation
+├── 256 hash batching
+├── Merkle root calculation
+└── Lisk sidechain posting
+```
 
-### Decentralized Identity
+### Step 5: Oracle & Token
+```
+🌐 Public Verification
+├── Chainlink OCR verification
+├── AXI_Carbon_Proof feed
+└── ARC token minting & bridging
+```
 
-Every participant (users, drivers, vehicles) has a blockchain-based identity that:
+## ✨ Key Features
 
-- Works across all supported networks
-- Gives users control over their data
-- Enables transparent verification without revealing private information
-- Follows W3C standards for maximum compatibility
+### 🧩 **Modular Hardware**
+- Universal compatibility with vehicles and chargers
+- CAN bus integration
+- Energy pinout support
+- Plug-and-play deployment
 
-### Environmental Impact Tracking
+### 🧾 **Cryptographic MRV (Measurement, Reporting, Verification)**
+- Hardware-verified timestamps
+- Cryptographically signed data
+- Immutable audit trails
+- Real-time validation
 
-Real-time monitoring of transportation choices:
+### 🔁 **Cross-Chain Proofs**
+- Peaq: Immutable storage
+- Lisk: REST API access
+- Ethereum: Chainlink consumption
+- Multi-chain token compatibility
 
-- **Carbon footprint calculation** for every trip
-- **Reward distribution** based on eco-friendly choices
-- **Virtual forest visualization** showing collective environmental impact
-- **Verified carbon credits** that can be traded or retired
+### 🌐 **Enterprise Integration**
+- GraphQL APIs
+- Webhook notifications
+- ESG platform compatibility
+- Real-time dashboards
 
-### Dynamic Economics
+### 💡 **Industrial Grade**
+- Secure hardware provisioning
+- Firmware OTA updates
+- 24/7 monitoring capabilities
+- Enterprise SLA support
 
-Smart pricing and reward systems:
+## 🗺️ Development Roadmap
 
-- **Fair pricing** calculated transparently on-chain
-- **Surge pricing** with community-approved parameters
-- **Driver incentives** for serving underserved areas
-- **Environmental bonuses** for electric vehicle adoption
+### ✅ **Tranche 1** (Q2 2025) - Foundation
+- [x] Complete Peaq integration
+- [x] On-chain signing implementation
+- [x] DriveTag/ChargeSense hardware deployment
+- [x] dataRegistry pallet verification
+- [x] Peaq testnet validation
 
-### Community Governance
+### 🧪 **Tranche 2** (Q3 2025) - Aggregation Layer
+- [ ] Peaq-Lisk relay construction
+- [ ] Merkle root batching module
+- [ ] Lisk SDK deployment
+- [ ] REST API proof endpoints
+- [ ] Firmware streaming stabilization
 
-Token-based decision making:
+### 🔗 **Tranche 3** (Q4 2025) - Oracle Integration
+- [ ] Chainlink OCR Merkle root reading
+- [ ] Active Chainlink feed on testnet
+- [ ] CCIP bridge deployment
+- [ ] ARC token movement to Ethereum testnet
 
-- **Platform parameters** (fee rates, reward distribution)
-- **Service area expansion** decisions
-- **Environmental initiative funding**
-- **Partnership approvals**
+### 📦 **Tranche 4** (Q1 2026) - Pilot Programs
+- [ ] Mainnet pilot deployments
+- [ ] Partner fleet integration
+- [ ] ARC token minting from device activity
+- [ ] Test credit sales via partner dashboards
 
-## Roadmap
+### 🔐 **Tranche 5** (Q2 2026) - Advanced Security
+- [ ] zk-SNARK inclusion proofs
+- [ ] Proof-of-Reserve safeguards
+- [ ] DID registry audit flow
+- [ ] Peaq runtime integration
 
-**Current Status (Q4 2024):** Foundation infrastructure complete
+### 🌍 **Tranche 6** (H2 2026) - Ecosystem Launch
+- [ ] Public ecosystem launch
+- [ ] Third-party builder onboarding
+- [ ] Token incentives implementation
+- [ ] DAO governance tooling
+- [ ] SDK for builders publication
 
-- Multi-chain smart contracts deployed
-- Core API services operational
-- Basic mobile app functionality
+## 🛠️ Development & Contributing
 
-**Q1 2025:** System Integration & Testing
+### Prerequisites
+```bash
+Node.js >= 16.0.0
+Yarn >= 1.22.0
+Rust (for Substrate development)
+```
 
-- Full mobile app release
-- Pilot program in 2 African cities
-- Environmental impact validation
+### Quick Start
+```bash
+# Clone the repository
+git clone https://github.com/axi-mobility/axi-core
+cd axi-core
 
-**Q2 2025:** Scale & Expand
+# Install dependencies
+yarn install
 
-- Additional city launches
-- DeFi integrations for enhanced rewards
-- Governance token launch
+# Setup environment
+cp .env.example .env
+# Edit .env with your configuration
 
-**Q3 2025:** Ecosystem Growth
+# Run tests
+yarn test
 
-- Third-party developer APIs
-- Hardware partner integrations
-- Cross-border payment corridors
+# Start development server
+yarn dev
+```
 
-## Contributing
+### Contributing Guidelines
 
-We welcome contributions from developers, designers, and domain experts. See our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions! Please follow these guidelines:
 
-### Development Standards
+1. **Code Standards**
+   - Follow [Conventional Commits](https://conventionalcommits.org/)
+   - Lint code before submission: `yarn lint`
+   - Ensure tests pass: `yarn test`
 
-- TypeScript for type safety
-- Comprehensive testing required
-- Security reviews for smart contract changes
-- Documentation for all public APIs
+2. **Areas for Contribution**
+   - 🔧 Contract coverage and test rigs
+   - 🔄 Relay logic improvements
+   - 📱 Firmware OTA modules
+   - 📊 Third-party dashboards
+   - 🌐 Documentation translation
+   - 🛠️ Language-specific SDKs
 
-## Community
+3. **Submission Process**
+   - Fork the repository
+   - Create feature branch: `git checkout -b feature/amazing-feature`
+   - Commit changes: `git commit -m 'feat: add amazing feature'`
+   - Push to branch: `git push origin feature/amazing-feature`
+   - Open Pull Request
 
-Join our growing community:
+## 📊 Performance Metrics
 
-- **Twitter**: [@AXIMobility](https://twitter.com/axihq)
-- **Email**: <hello@aximobility.com>
+### Network Performance
+| Metric | Peaq | Lisk | Ethereum (via Chainlink) |
+|--------|------|------|---------------------------|
+| **Block Time** | 2 seconds | 10 seconds | 12 seconds |
+| **Finality** | 2 blocks | 103 blocks | 12 blocks |
+| **Transaction Cost** | ~$0.001 | ~$0.01 | ~$5-50 |
+| **Throughput** | 1000+ TPS | 100 TPS | 15 TPS |
 
-## License
+### Hardware Specifications
+| Component | DriveTag | ChargeSense |
+|-----------|----------|-------------|
+| **MCU** | STM32L5 (120MHz) | STM32L5 (120MHz) |
+| **Security** | ATECC608B | ATECC608B |
+| **Connectivity** | Quectel BG95 (NB-IoT) | Ethernet/WiFi |
+| **Power** | 12V Vehicle Bus | 240V AC Input |
+| **Storage** | 512KB Flash | 512KB Flash |
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+## 🤝 Community & Support
 
-## Acknowledgments
+### 📱 Social Channels
+- **Twitter**: [@axihq](https://twitter.com/axihq)
+- **Telegram**: [@axihq](https://t.me/axihq)
+- **GitHub**: [github.com/axi-mobility](https://github.com/axi-mobility)
+- **LinkedIn**: [AXI Mobility](https://linkedin.com/company/axihq)
 
-- **Peaq Network** for DePIN infrastructure and technical support
-- **OpenZeppelin** for smart contract security standards
+### 💬 Getting Help
+- Use `#axi` hashtag for community posts
+- Submit issues on GitHub for bug reports
+- Join our Telegram for real-time support
+- Visit our website at [aximobility.com](https://aximobility.com)
+- Check documentation and resources online
+
+### 📈 Updates & Progress
+We regularly post:
+- Engineering development logs
+- Grant progress reports
+- Partnership announcements
+- Technical deep-dives
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+You may use, modify, distribute, and deploy this software with attribution.
+
+## 🙏 Acknowledgements
+
+We extend our gratitude to our partners and supporters:
+
+- **🌐 [Peaq Network](https://peaq.xyz)** - For trusted storage and DID runtime support
+- **🧠 [Lisk Incubator](https://lisk.com) & [CV Labs](https://cvlabs.com)** - For mentorship and JS-sidechain funding
+- **🔗 [Chainlink Labs](https://chain.link)** - For oracle configuration and CCIP architecture
+- **🚀 Our Early Testers & DAO Backers** - For believing in verifiable climate action
 
 ---
 
-**Building sustainable mobility infrastructure for Africa's next billion users**
+<div align="center">
 
-Made with ❤️  by the AXI team
+**Built from the ground up to turn every clean kilometer and kilowatt-hour into public proof.**
+
+*Making carbon accounting as transparent and verifiable as the blockchain itself.*
+
+</div>
