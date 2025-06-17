@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[Website](https://aximobility.com) • [Documentation](https://docs.aximobility.com) • [API Reference](https://api.aximobility.com/docs)
+[Website](https://aximobility.com) • [Documentation](#) • [API Reference](#)
 
 ## What is AXI?
 
@@ -149,118 +149,6 @@ Token-based decision making:
 - **Environmental initiative funding**
 - **Partnership approvals**
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- PostgreSQL 14+
-- Docker (recommended)
-
-### Quick Setup
-
-```bash
-# Clone the repository
-git clone https://github.com/axi-ecosystem/blockchain-integration
-cd blockchain-integration
-
-# Install dependencies
-npm install
-
-# Setup environment variables
-cp .env.example .env.local
-# Edit .env.local with your configuration
-
-# Start local development environment
-docker-compose up -d
-
-# Build smart contracts
-npm run build:contracts
-
-# Run tests
-npm test
-
-# Start the development server
-npm run dev
-```
-
-### Environment Configuration
-
-Key environment variables:
-
-```bash
-# Blockchain Networks
-PEAQ_WS_URL=wss://wss-krest.peaq.network  # Testnet
-ETHEREUM_RPC_URL=https://mainnet.infura.io/v3/YOUR_KEY
-POLYGON_RPC_URL=https://polygon-rpc.com
-
-# Database
-DATABASE_URL=postgresql://user:password@localhost:5432/axi
-REDIS_URL=redis://localhost:6379
-
-# API Keys
-JWT_SECRET=your-secret-key
-PAYMENT_PROVIDER_KEY=your-payment-key
-```
-
-## Documentation
-
-### For Developers
-
-- [Smart Contract Documentation](docs/contracts/)
-- [API Reference](docs/api/)
-- [Integration Guide](docs/integration/)
-- [Deployment Guide](docs/deployment/)
-
-### For Users
-
-- [User Guide](https://docs.aximobility.com/users)
-- [Driver Onboarding](https://docs.aximobility.com/drivers)
-- [Environmental Impact](https://docs.aximobility.com/environment)
-
-## Testing
-
-We maintain comprehensive test coverage across all components:
-
-```bash
-# Run all tests
-npm test
-
-# Smart contract tests
-npm run test:contracts
-
-# API integration tests  
-npm run test:integration
-
-# End-to-end tests
-npm run test:e2e
-```
-
-**Current Test Coverage:**
-
-- Smart Contracts: 49 tests (100% pass rate)
-- Backend APIs: 24 tests (100% pass rate)
-- Integration Tests: 6 tests (100% pass rate)
-
-## Deployment
-
-### Testnet Deployment
-
-```bash
-# Deploy to Peaq Krest testnet
-npm run deploy:krest
-
-# Deploy to Polygon Mumbai
-npm run deploy:mumbai
-```
-
-### Production Deployment
-
-```bash
-# Deploy to production networks
-npm run deploy:production
-```
-
 ## Roadmap
 
 **Current Status (Q4 2024):** Foundation infrastructure complete
@@ -302,9 +190,7 @@ We welcome contributions from developers, designers, and domain experts. See our
 
 Join our growing community:
 
-- **Discord**: [AXI Community](https://discord.gg/axi)
-- **Twitter**: [@AXIMobility](https://twitter.com/aximobility)
-- **Telegram**: [AXI Developers](https://t.me/axidevelopers)
+- **Twitter**: [@AXIMobility](https://twitter.com/axihq)
 - **Email**: <hello@aximobility.com>
 
 ## License
@@ -314,9 +200,7 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) for deta
 ## Acknowledgments
 
 - **Peaq Network** for DePIN infrastructure and technical support
-- **Mastercard Foundation** for early validation and backing
 - **OpenZeppelin** for smart contract security standards
-- **African tech community** for ongoing feedback and support
 
 ---
 
