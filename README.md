@@ -36,7 +36,7 @@ Massive gap between:
 
 ## 💡 Our Solution: Hardware-Signed Carbon Hashes
 
-AXI unifies all layers by anchoring tamper-proof hardware measurements directly to multi-chain blockchain infrastructure through compact, upgradeable devices:
+AXI builds compact, upgradeable devices—**DriveTag** for vehicles, and **ChargeSense** for EV charging infrastructure. These edge units:
 
 ### 🚗 DriveTag (Vehicle Integration)
 - Real-time odometer readings
@@ -50,6 +50,17 @@ AXI unifies all layers by anchoring tamper-proof hardware measurements directly 
 - Grid interaction monitoring
 - Infrastructure uptime validation
 
+### 🔐 Secure Processing Pipeline
+- Sample metrics like odometer readings, battery discharge (kWh), uptime, and energy flow
+- Hash the payload (SHA-256) on-device
+- Sign the hash with a **non-exportable private key** stored in secure silicon (ATECC608B)
+- Anchor the signed hash to **Peaq**, a low-fee Substrate-based chain
+- Batch and Merkle-proof those hashes to **Lisk**, a JavaScript chain for REST access
+- Allow **Chainlink** to attest and post verified carbon proofs to Ethereum or Polygon
+- Feed validated data into **CarbonSync**, which calculates carbon credits and generates audit-traceable, MRV-compliant documentation for credit issuance
+- Stream data to the **Enterprise Oasis Portal**, where companies access dashboards, ESG reports, carbon credit status, and real-time performance metrics
+- Update **Community Oasis Portal**, where public participants can view open data, vote on DAO proposals, or stake to support infrastructure deployment
+
 ## 🏗️ Technology Architecture
 
 ### Core Process Flow
@@ -58,122 +69,87 @@ AXI unifies all layers by anchoring tamper-proof hardware measurements directly 
 graph TB
     %% Edge Layer
     subgraph EdgeLayer["🔧 EDGE HARDWARE LAYER"]
-        DT["`**DriveTag**
-        📍 GPS Coordinates
-        🛣️ Odometer Readings  
-        🔋 Battery kWh
-        📊 CAN Bus Data`"]
+        DT["DriveTag<br/>📍 GPS Coordinates<br/>🛣️ Odometer Readings<br/>🔋 Battery kWh<br/>📊 CAN Bus Data"]
         
-        CS["`**ChargeSense**
-        ⚡ Energy Flow
-        🔌 Charging Sessions
-        📈 Grid Interaction
-        ⏱️ Uptime Tracking`"]
+        CS["ChargeSense<br/>⚡ Energy Flow<br/>🔌 Charging Sessions<br/>📈 Grid Interaction<br/>⏱️ Uptime Tracking"]
         
-        SEC["`**ATECC608B Secure Element**
-        🔐 CBOR Encoding
-        #️⃣ SHA-256 Hashing
-        ✍️ ECDSA Signing
-        🔑 Non-exportable Keys`"]
+        SEC["ATECC608B Secure Element<br/>🔐 CBOR Encoding<br/>#️⃣ SHA-256 Hashing<br/>✍️ ECDSA Signing<br/>🔑 Non-exportable Keys"]
     end
 
     %% Blockchain Layer
     subgraph BlockchainLayer["⛓️ BLOCKCHAIN INFRASTRUCTURE"]
-        PEAQ["`**Peaq Network**
-        (Substrate Chain)
+        PEAQ["Peaq Network<br/>(Substrate Chain)<br/><br/>dataRegistry.storeHash()<br/>• hash: 0x1a2b...<br/>• did: did:peaq:0x...<br/>• timestamp: unix_time<br/><br/>⚡ 2-second finality"]
         
-        dataRegistry.storeHash()
-        • hash: 0x1a2b...
-        • did: did:peaq:0x...
-        • timestamp: unix_time
-        
-        ⚡ 2-second finality`"]
-        
-        LISK["`**Lisk Sidechain**
-        (JavaScript SDK)
-        
-        Merkle Aggregator:
-        • Batch 256 hashes
-        • Calculate Merkle root
-        • REST API endpoints
-        • GraphQL interface
-        
-        📡 /proof/{merkle_root}`"]
+        LISK["Lisk Sidechain<br/>(JavaScript SDK)<br/><br/>Merkle Aggregator:<br/>• Batch 256 hashes<br/>• Calculate Merkle root<br/>• REST API endpoints<br/>• GraphQL interface<br/><br/>📡 /proof/{merkle_root}"]
+    end
+
+    %% Verification Layer
+    subgraph VerificationLayer["🧮 VERIFICATION ENGINE"]
+        CARBONSYNC["CarbonSync<br/>(Custom MRV Engine)<br/><br/>• Read verified hashes<br/>• Apply certified carbon models<br/>• Generate MRV-validated proofs<br/>• Create audit documentation<br/>• Calculate carbon credits"]
     end
 
     %% Oracle Layer
     subgraph OracleLayer["🌐 ORACLE & TOKEN LAYER"]
-        CHAIN["`**Chainlink OCR**
+        CHAIN["Chainlink OCR<br/><br/>• Merkle Root Verification<br/>• Cross-chain Attestation<br/>• AXI_Carbon_Proof Feed<br/>• Decentralized Consensus"]
         
-        • Merkle Root Verification
-        • Cross-chain Attestation
-        • AXI_Carbon_Proof Feed
-        • Decentralized Consensus`"]
-        
-        ETH["`**Ethereum/Polygon**
-        
-        • ERC-20 Token Standard
-        • CCIP Cross-chain Bridge
-        • DeFi Integration
-        • Public Markets`"]
+        ETH["Ethereum/Polygon<br/><br/>• ERC-20 Token Standard<br/>• CCIP Cross-chain Bridge<br/>• DeFi Integration<br/>• Public Markets"]
     end
 
     %% Token Flow
     subgraph TokenFlow["💰 TOKENIZATION PIPELINE"]
-        ARC20["`**ARC-20**
-        (Peaq Native)
+        ARC20["ARC-20<br/>(Peaq Native)<br/><br/>• Native Tokens<br/>• On-chain Proofs<br/>• Low Gas Fees"]
         
-        • Native Tokens
-        • On-chain Proofs
-        • Low Gas Fees`"]
+        BRIDGE["CCIP Bridge<br/><br/>Cross-chain<br/>Token Transfer"]
         
-        BRIDGE["`**CCIP Bridge**
+        ERC20["ARC-20.e<br/>(Polygon Wrapped)<br/><br/>• DeFi Compatible<br/>• High Liquidity<br/>• Public Trading"]
+    end
+
+    %% User Interfaces
+    subgraph UserInterfaces["🖥️ USER INTERFACES"]
+        ENTERPRISE["Enterprise Oasis Portal<br/><br/>🧑‍💼 Real-time Carbon Dashboards<br/>📊 ESG Report Generation<br/>🏆 Credit Certificate Access<br/>📤 Audit-compliant Exports<br/>🔗 Marketplace Integration"]
         
-        Cross-chain
-        Token Transfer`"]
-        
-        ERC20["`**ARC-20.e**
-        (Polygon Wrapped)
-        
-        • DeFi Compatible
-        • High Liquidity
-        • Public Trading`"]
+        COMMUNITY["Community Oasis Portal<br/><br/>👥 Public Carbon Data<br/>🗳️ DAO Proposal Voting<br/>💰 Staking Infrastructure<br/>🛒 Open Credit Marketplace<br/>📈 Network Performance"]
     end
 
     %% Final Output
-    CREDITS["`🏆 **VERIFIABLE CARBON CREDITS**
-    
-    ✅ Hardware-Signed
-    ⛓️ Blockchain-Native
-    💱 Instantly Tradeable
-    🔒 Tamper-Proof`"]
+    CREDITS["🏆 VERIFIABLE CARBON CREDITS<br/><br/>✅ Hardware-Signed<br/>⛓️ Blockchain-Native<br/>💱 Instantly Tradeable<br/>🔒 Tamper-Proof<br/>📋 Audit-Grade"]
 
     %% Connections
     DT --> SEC
     CS --> SEC
     SEC -->|WebSocket 2s| PEAQ
     PEAQ -->|Relay Bridge| LISK
-    LISK -->|Oracle Feed| CHAIN
+    LISK -->|Verified Hashes| CARBONSYNC
+    CARBONSYNC -->|Oracle Feed| CHAIN
     CHAIN --> ETH
     
     PEAQ --> ARC20
     ARC20 --> BRIDGE
     BRIDGE --> ERC20
+    
+    CARBONSYNC -->|Real-time Data| ENTERPRISE
+    CARBONSYNC -->|Public Data| COMMUNITY
     ETH --> CREDITS
     ERC20 --> CREDITS
+    ENTERPRISE --> CREDITS
+    COMMUNITY --> CREDITS
 
-    %% Dark Mode Styling
-    classDef edgeStyleDark fill:#1a2332,stroke:#64b5f6,stroke-width:2px,color:#e3f2fd
-    classDef blockchainStyleDark fill:#2d1b3d,stroke:#ba68c8,stroke-width:2px,color:#f3e5f5
-    classDef oracleStyleDark fill:#1b2e1b,stroke:#81c784,stroke-width:2px,color:#e8f5e8
-    classDef tokenStyleDark fill:#332219,stroke:#ffb74d,stroke-width:2px,color:#fff3e0
-    classDef creditsStyleDark fill:#3d1a1a,stroke:#ef5350,stroke-width:3px,color:#ffebee
+    %% Styling
+    classDef edgeStyle fill:#1a2332,stroke:#64b5f6,stroke-width:2px,color:#e3f2fd
+    classDef blockchainStyle fill:#2d1b3d,stroke:#ba68c8,stroke-width:2px,color:#f3e5f5
+    classDef verificationStyle fill:#2d3319,stroke:#aed581,stroke-width:2px,color:#f1f8e9
+    classDef oracleStyle fill:#1b2e1b,stroke:#81c784,stroke-width:2px,color:#e8f5e8
+    classDef tokenStyle fill:#332219,stroke:#ffb74d,stroke-width:2px,color:#fff3e0
+    classDef interfaceStyle fill:#1a1a2e,stroke:#b39ddb,stroke-width:2px,color:#ede7f6
+    classDef creditsStyle fill:#3d1a1a,stroke:#ef5350,stroke-width:3px,color:#ffebee
 
-    class DT,CS,SEC edgeStyleDark
-    class PEAQ,LISK blockchainStyleDark
-    class CHAIN,ETH oracleStyleDark
-    class ARC20,BRIDGE,ERC20 tokenStyleDark
-    class CREDITS creditsStyleDark
+    class DT,CS,SEC edgeStyle
+    class PEAQ,LISK blockchainStyle
+    class CARBONSYNC verificationStyle
+    class CHAIN,ETH oracleStyle
+    class ARC20,BRIDGE,ERC20 tokenStyle
+    class ENTERPRISE,COMMUNITY interfaceStyle
+    class CREDITS creditsStyle
 ```
 
 ### Technology Stack
@@ -184,7 +160,10 @@ graph TB
 | **Registry Chain** | Immutable carbon hash ledger | Peaq Substrate | `storeHash(hash, did, timestamp)` |
 | **Merkle Aggregator** | Enterprise REST & proof server | Lisk SDK sidechain | TypeScript modules |
 | **Oracle & Bridge** | Public attestation & liquidity | Chainlink OCR, PoR, CCIP | Multi-chain verification |
+| **Verification Layer** | Proof-based carbon credit generation | **CarbonSync** (custom MRV engine) | Audit-grade carbon calculations |
 | **Token Layer** | Carbon credit tokenization | ARC-20 (Peaq) + ERC-20 (Polygon) | Cross-chain compatibility |
+| **Enterprise Interface** | Real-time carbon intelligence and exports | **AXI Enterprise Oasis Portal** | Web dashboard + API |
+| **Community Interface** | Stakeholder visibility & governance | **AXI Community Oasis Portal** | Public dashboard, staking, DAO |
 
 ### Cryptographic Security
 
@@ -231,12 +210,39 @@ graph TB
 └── Lisk sidechain posting
 ```
 
-### Step 5: Oracle & Token
+### Step 5: CarbonSync Processing
+```
+🧮 Verification Engine
+├── Read verified hashes
+├── Apply certified carbon models
+├── Generate MRV-validated proofs
+└── Create machine-auditable documentation
+```
+
+### Step 6: Oracle & Token
 ```
 🌐 Public Verification
 ├── Chainlink OCR verification
 ├── AXI_Carbon_Proof feed
 └── ARC token minting & bridging
+```
+
+### Step 7: Enterprise Access
+```
+🧑‍💼 Enterprise Oasis Portal
+├── Real-time carbon dashboards
+├── ESG report generation
+├── Credit certificate access
+└── Audit-compliant exports
+```
+
+### Step 8: Community Governance
+```
+👥 Community Oasis Portal
+├── Public carbon data visibility
+├── DAO proposal voting
+├── Staking for infrastructure
+└── Open credit marketplace
 ```
 
 ## ✨ Key Features
@@ -259,6 +265,24 @@ graph TB
 - Ethereum: Chainlink consumption
 - Multi-chain token compatibility
 
+### 🧮 **CarbonSync Engine**
+- Certified carbon methodology alignment
+- MRV-validated proof generation
+- Machine-auditable documentation
+- Audit-grade credit issuance
+
+### 🧑‍💼 **Enterprise Oasis Portal**
+- Real-time carbon tracking dashboards
+- ESG report generation and export
+- Credit certificate management
+- Marketplace integration APIs
+
+### 👥 **Community Oasis Portal**
+- Public carbon data transparency
+- DAO governance participation
+- Staking opportunities for infrastructure
+- Open credit marketplace access
+
 ### 🌐 **Enterprise Integration**
 - GraphQL APIs
 - Webhook notifications
@@ -280,37 +304,37 @@ graph TB
 - [x] dataRegistry pallet verification
 - [x] Peaq testnet validation
 
-### 🧪 **Tranche 2** (Q3 2025) - Aggregation Layer
-- [ ] Peaq-Lisk relay construction
-- [ ] Merkle root batching module
-- [ ] Lisk SDK deployment
-- [ ] REST API proof endpoints
-- [ ] Firmware streaming stabilization
+### 🧪 **Tranche 2** (Q3 2025) - Device Assembly & Edge Relay
+- [ ] EVT device assembly completion
+- [ ] Edge data relay functionality
+- [ ] Merkle root batching activation
+- [ ] Lisk REST API proof serving
+- [ ] End-to-end relay functional testing
 
 ### 🔗 **Tranche 3** (Q4 2025) - Oracle Integration
 - [ ] Chainlink OCR Merkle root reading
-- [ ] Active Chainlink feed on testnet
-- [ ] CCIP bridge deployment
-- [ ] ARC token movement to Ethereum testnet
+- [ ] AXI_Carbon_Proof feed publication
+- [ ] Initial CCIP bridge prototype
+- [ ] Testnet validation complete
 
-### 📦 **Tranche 4** (Q1 2026) - Pilot Programs
+### 📦 **Tranche 4** (Q1 2026) - Mainnet Pilots
 - [ ] Mainnet pilot deployments
-- [ ] Partner fleet integration
 - [ ] ARC token minting from device activity
-- [ ] Test credit sales via partner dashboards
+- [ ] Partner fleet integration
+- [ ] Carbon token test sales via dashboard
 
-### 🔐 **Tranche 5** (Q2 2026) - Advanced Security
-- [ ] zk-SNARK inclusion proofs
-- [ ] Proof-of-Reserve safeguards
-- [ ] DID registry audit flow
-- [ ] Peaq runtime integration
+### 🔐 **Tranche 5** (Q2 2026) - Full Protocol Security
+- [ ] zk-SNARK hash inclusion proofs
+- [ ] Proof-of-Reserve anti-overminting guardrails
+- [ ] DID-on-chain audit tooling
+- [ ] Complete security audit implementation
 
-### 🌍 **Tranche 6** (H2 2026) - Ecosystem Launch
-- [ ] Public ecosystem launch
-- [ ] Third-party builder onboarding
-- [ ] Token incentives implementation
-- [ ] DAO governance tooling
-- [ ] SDK for builders publication
+### 🌍 **Tranche 6** (H2 2026) - Ecosystem Growth
+- [ ] Tokenomics launch
+- [ ] External device onboarding
+- [ ] Staking incentives activation
+- [ ] Open SDK for third-party builders
+- [ ] DAO proposal system deployment
 
 ## 🛠️ Development & Contributing
 
@@ -389,8 +413,10 @@ We welcome contributions! Please follow these guidelines:
 ### 📱 Social Channels
 - **Twitter**: [@axihq](https://twitter.com/axihq)
 - **Telegram**: [@axihq](https://t.me/axihq)
-- **GitHub**: [github.com/axi-mobility](https://github.com/axi-mobility)
+- **GitHub**: [github.com/axi-mobility](https://github.com/aximobility)
 - **LinkedIn**: [AXI Mobility](https://linkedin.com/company/axihq)
+
+> **Note:** We are `@axihq` across all social platforms, but our GitHub handle is [`axi-mobility`](https://github.com/axi-mobility).
 
 ### 💬 Getting Help
 - Use `#axi` hashtag for community posts
